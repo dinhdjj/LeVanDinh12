@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LeVanDinh12.Common\LeVanDinh12.Common.csproj" />
+  </ItemGroup>
+
 </Project>
