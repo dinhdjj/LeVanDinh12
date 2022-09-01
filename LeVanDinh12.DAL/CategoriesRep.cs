@@ -23,6 +23,16 @@ namespace LeVanDinh12.DAL
         }
         #endregion
 
+        public IQueryable<Category> GetCategories()
+        {
+            return Context.Categories.Select(c => c);
+        }
+
+        public Category FindByName(string name)
+        {
+            return Context.Categories.Where(c => c.Name == name).FirstOrDefault();
+        }
+
         #region --Methods--
         public CategoriesRep() { }
         #endregion

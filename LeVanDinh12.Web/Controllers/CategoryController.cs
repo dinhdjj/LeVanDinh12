@@ -1,6 +1,7 @@
 ﻿using LeVanDinh12.BLL;
 using LeVanDinh12.Common.Req;
 using LeVanDinh12.Common.Rsp;
+using LeVanDinh12.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,7 +21,22 @@ namespace LeVanDinh12.Web.Controllers
             categorySvc = new CategorySvc();
         }
 
-        [HttpPost("get-by-id")]
+        [HttpPost("create")]
+        public IActionResult CreateCategory([FromBody] CreateCategoryReq req)
+        {
+            //if (string.IsNullOrEmpty(cate.Name) == true)
+            //{
+            //    ModelState.AddModelError("", "Name not null");
+            //    return Ok(cate);
+            //}
+            //var res = new SingleRsp();
+            //res.Data = categorySvc.Create(cate);
+            //return Ok(res);
+
+            return Ok(categorySvc.CreateCategory(req));
+        }
+
+        [HttpGet("get-id")]
         public IActionResult GetCategoryById([FromBody] SimpleReq req)
         {
             var res = new SingleRsp();
@@ -28,11 +44,23 @@ namespace LeVanDinh12.Web.Controllers
             return Ok(res);
         }
 
-        [HttpPost("get-all")]
-        public IActionResult GetAllCategories()
+        [HttpGet("all")]
+        public IActionResult GetCategory()
+        {
+            return Ok(categorySvc.GetCategories());
+        }
+
+        [HttpPost("update")]
+        public IActionResult UpdateCategory([FromBody] UpdateCategoryReq req)
+        {
+            return Ok(categorySvc.UpdateCategory(req));
+        }
+
+        [HttpDelete("delete")]
+        public IActionResult DeleteCategoryById([FromBody] SimpleReq req)
         {
             var res = new SingleRsp();
-            res.Data = categorySvc.All;
+            res = categorySvc.Delete(req.Id);
             return Ok(res);
         }
     }
