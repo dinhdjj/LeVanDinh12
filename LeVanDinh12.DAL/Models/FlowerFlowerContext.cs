@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -28,6 +29,7 @@ namespace LeVanDinh12.DAL.Models
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<PostComment> PostComments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public IEnumerable<object> Category { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
