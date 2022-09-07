@@ -17,7 +17,7 @@ namespace LeVanDinh12.BLL
         {
             flowerRep = new FlowerRep();
         }
-
+        #region --Override--
         public override SingleRsp Read(int id)
         {
             var res = new SingleRsp();
@@ -31,7 +31,9 @@ namespace LeVanDinh12.BLL
             res.Data = _rep.DeleteFlowerById(id);
             return res;
         }
+        #endregion
 
+        #region --Methods--
         public SingleRsp GetFlowers()
         {
             var res = new SingleRsp();
@@ -78,5 +80,6 @@ namespace LeVanDinh12.BLL
 
             return res;
         }
+        #endregion
     }
 }

@@ -14,12 +14,14 @@ namespace LeVanDinh12.DAL
         {
 
         }
-
+        #region --Override--
         public override Flower Read(int id)
         {
             return All.FirstOrDefault(f => f.Id == id);
         }
+        #endregion
 
+        #region --Methods--
         public IQueryable<Flower> GetFlowers()
         {
             return All;
@@ -79,5 +81,6 @@ namespace LeVanDinh12.DAL
             context.SaveChanges();
             return f.Id;
         }
+        #endregion
     }
 }
