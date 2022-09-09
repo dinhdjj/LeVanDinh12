@@ -130,5 +130,25 @@ namespace LeVanDinh12.BLL
 			return new string(Enumerable.Repeat(chars, length)
 				.Select(s => s[random.Next(s.Length)]).ToArray());
 		}
+
+		public SingleRsp DeleteUser(int id)
+		{
+			var rsp = new SingleRsp();
+
+			var user = _rep.Read(id);
+
+			if (user == null) 
+			{
+				rsp.Code = "404";
+				rsp.SetError("User not found");
+				return rsp;
+			}
+
+			_rep.Delete(user);
+
+			rsp.Data = user;
+
+			return rsp;
+		}
 	}
 }
