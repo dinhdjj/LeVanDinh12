@@ -33,5 +33,10 @@ namespace LeVanDinh12.DAL
 		{
 			return Context.Users.Where(u => u.Email == email).FirstOrDefault();
 		}
+
+		public User FindByToken(string token)
+        {
+			return Context.Users.Where(u => u.Token == token).FirstOrDefault();
+		}
 	}
 }
