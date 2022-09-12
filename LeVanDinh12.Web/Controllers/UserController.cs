@@ -41,16 +41,22 @@ namespace LeVanDinh12.Web.Controllers
             return Ok(UserSvc.CreateUser(req));
         }
 
-        [HttpPost("refresh-token")]
+        [HttpPatch("refresh-token")]
         public IActionResult RefreshToken([FromBody] RefreshUserTokenReq req) 
         {
             return Ok(UserSvc.RefreshUserToken(req));
         }
 
-        [HttpPost("update-password")]
+        [HttpPatch("update-password")]
         public IActionResult UpdatePassword([FromBody] UpdateUserPasswordReq req)
         {
             return Ok(UserSvc.UpdateUserPassword(req));
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            return Ok(UserSvc.DeleteUser(id));
         }
     }
 }
