@@ -33,6 +33,12 @@ namespace LeVanDinh12.DAL
             return Context.Categories.Where(c => c.Name == name).FirstOrDefault();
         }
 
+        public void DeleteCate(Category category)
+        {
+            Context.Categories.Remove(category);
+            Context.SaveChanges();
+        }
+
         #region --Methods--
         public CategoriesRep() { }
         #endregion
