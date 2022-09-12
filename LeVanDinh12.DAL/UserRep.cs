@@ -38,5 +38,11 @@ namespace LeVanDinh12.DAL
         {
 			return Context.Users.Where(u => u.Token == token).FirstOrDefault();
 		}
+    
+		public void Delete(User user)
+    {
+			Context.Users.Remove(user);
+			Context.SaveChanges();
+    }
 	}
 }
