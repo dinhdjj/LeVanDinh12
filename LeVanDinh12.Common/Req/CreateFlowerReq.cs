@@ -11,7 +11,7 @@ namespace LeVanDinh12.Common.Req
         public int UnitPrice { get; set; }
         public int Quantity { get; set; }
         public string MainImageUrl { get; set; }
-        public long UserId { get; set; }
+        public String UserToken { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 

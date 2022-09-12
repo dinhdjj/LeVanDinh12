@@ -13,9 +13,11 @@ namespace LeVanDinh12.BLL
     public class FlowerSvc : GenericSvc<FlowerRep, Flower>
     {
         private FlowerRep flowerRep;
+        private UserRep userRep;
         public FlowerSvc()
         {
             flowerRep = new FlowerRep();
+            userRep = new UserRep();
         }
         #region --Override--
         public override SingleRsp Read(int id)
@@ -28,6 +30,16 @@ namespace LeVanDinh12.BLL
         public override SingleRsp Delete(int id)
         {
             var res = new SingleRsp();
+
+            var flower = _rep.Read(id);
+
+            if (flower == null)
+            {
+                res.Code = "404";
+                res.SetError("Flower not found");
+                return res;
+            }
+
             res.Data = _rep.DeleteFlowerById(id);
             return res;
         }
@@ -53,13 +65,22 @@ namespace LeVanDinh12.BLL
         public SingleRsp CreateFlower(CreateFlowerReq flowerReq)
         {
             var res = new SingleRsp();
+            var user = userRep.FindByToken(flowerReq.UserToken);
+
+            if (user == null)
+            {
+                res.Code = "401";
+                res.SetError("Unauthenticated!");
+                return res;
+            }
+
             Flower flower = new Flower();
             flower.Name = flowerReq.Name;
             flower.Body = flowerReq.Body;
             flower.UnitPrice = flowerReq.UnitPrice;
             flower.Quantity = flowerReq.Quantity;
             flower.MainImageUrl = flowerReq.MainImageUrl;
-            flower.UserId = flowerReq.UserId;
+            flower.UserId = user.Id;
             _rep.CreateFlower(flower);
             res.Data = flower;
 
