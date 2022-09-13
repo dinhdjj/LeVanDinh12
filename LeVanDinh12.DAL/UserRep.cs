@@ -40,9 +40,9 @@ namespace LeVanDinh12.DAL
 		}
     
 		public void Delete(User user)
-    {
+		{
 			Context.Users.Remove(user);
 			Context.SaveChanges();
-    }
+		}
 	}
 }

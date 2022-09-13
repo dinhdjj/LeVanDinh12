@@ -36,12 +36,10 @@ namespace LeVanDinh12.Web.Controllers
             return Ok(categorySvc.CreateCategory(req));
         }
 
-        [HttpGet("get-id")]
-        public IActionResult GetCategoryById([FromBody] SimpleReq req)
+        [HttpGet("get-id/{id}")]
+        public IActionResult GetCategoryById(int id)
         {
-            var res = new SingleRsp();
-            res = categorySvc.Read(req.Id);
-            return Ok(res);
+            return Ok(categorySvc.Read(id));
         }
 
         [HttpGet("all")]
@@ -57,11 +55,9 @@ namespace LeVanDinh12.Web.Controllers
         }
 
         [HttpDelete("delete")]
-        public IActionResult DeleteCategoryById([FromBody] SimpleReq req)
+        public IActionResult DeleteCategoryById(int id)
         {
-            var res = new SingleRsp();
-            res = categorySvc.Delete(req.Id);
-            return Ok(res);
+            return Ok(categorySvc.DeleteCategory(id));
         }
     }
 }

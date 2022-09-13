@@ -14,11 +14,10 @@ namespace LeVanDinh12.BLL
         #region --Override--
         public override SingleRsp Read(int id)
         {
-            var res = new SingleRsp();
-            var m = _rep.Read(id);
-            res.Data = m;
+            var rsq = new SingleRsp();
+            rsq.Data = _rep.Read(id);
 
-            return res;
+            return rsq;
         }
 
         public override SingleRsp Update(Category m)
@@ -78,7 +77,7 @@ namespace LeVanDinh12.BLL
             if (u.Name != req.oldName)
             {
                 rsp.Code = "422";
-                rsp.SetError("Old password is invalid");
+                rsp.SetError("Old name is invalid");
                 return rsp;
             }
 
@@ -86,6 +85,21 @@ namespace LeVanDinh12.BLL
             _rep.Update(u);
 
             return rsp;
+        }
+
+        public SingleRsp DeleteCategory(int id)
+        {
+            var de = new SingleRsp();
+            var category = _rep.Read(id);
+            if(category == null)
+            {
+                de.Code = "404";
+                de.SetError("Category not found");
+                return de;
+            }
+            _rep.DeleteCate(category);
+            de.Data = category;
+            return de;
         }
 
         #region --Methods --
